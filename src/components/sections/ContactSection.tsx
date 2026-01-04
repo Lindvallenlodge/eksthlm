@@ -19,14 +19,16 @@ import { useLanguage } from "@/i18n/LanguageContext";
 export function ContactSection() {
   const { toast } = useToast();
   const { t } = useLanguage();
-  // Contact values (explicit defaults; translations may optionally override)
-  const emailValue = (t.contact as any).emailValue ?? "solutions@eksthlm.com";
+  // Contact values
+  // If you later add per-language overrides in translations.ts (emailValue/phoneValue/phoneHref/serviceAreaValue)
+  // they will be used; otherwise these defaults apply.
+  const emailValue = (t.contact as any).emailValue || "solutions@eksthlm.com";
   const emailHref = `mailto:${emailValue}`;
 
-  const phoneValue = (t.contact as any).phoneValue ?? "+46 76 206 61 28";
-  const phoneHref = (t.contact as any).phoneHref ?? "tel:+46762066128";
+  const phoneValue = (t.contact as any).phoneValue || "+46 76 206 61 28";
+  const phoneHref = (t.contact as any).phoneHref || "tel:+46762066128";
 
-  const serviceAreaValue = (t.contact as any).serviceAreaValue ?? "Stockholm & Beyond";
+  const serviceAreaValue = (t.contact as any).serviceAreaValue || "Stockholm & Beyond";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [services, setServices] = useState({
     quoteReview: false,
