@@ -19,12 +19,14 @@ import { useLanguage } from "@/i18n/LanguageContext";
 export function ContactSection() {
   const { toast } = useToast();
   const { t } = useLanguage();
-  // Contact values (prefer translations when available, fallback to defaults)
-  const emailValue = (t.contact as any).emailValue || "solutions@eksthlm.com";
+  // Contact values (explicit defaults; translations may optionally override)
+  const emailValue = (t.contact as any).emailValue ?? "solutions@eksthlm.com";
   const emailHref = `mailto:${emailValue}`;
 
-  const phoneValue = (t.contact as any).phoneValue || "+46 76 206 61 28";
-  const phoneHref = (t.contact as any).phoneHref || "tel:+46762066128";
+  const phoneValue = (t.contact as any).phoneValue ?? "+46 76 206 61 28";
+  const phoneHref = (t.contact as any).phoneHref ?? "tel:+46762066128";
+
+  const serviceAreaValue = (t.contact as any).serviceAreaValue ?? "Stockholm & Beyond";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [services, setServices] = useState({
     quoteReview: false,
@@ -96,7 +98,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.serviceArea}</p>
-                  <p className="font-medium">{t.contact.serviceAreaValue}</p>
+                  <p className="font-medium">{serviceAreaValue}</p>
                 </div>
               </div>
             </div>
