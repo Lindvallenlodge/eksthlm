@@ -46,7 +46,7 @@ export function Header() {
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-    
+
     if (href.startsWith("/#")) {
       const sectionId = href.replace("/#", "");
       if (location.pathname === "/") {
@@ -64,9 +64,9 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <img 
-              src={logoImg} 
-              alt="EkSthlm logo" 
+            <img
+              src={logoImg}
+              alt="EkSthlm logo"
               className="h-10 w-auto object-contain rounded-lg"
             />
             <span className="text-xl font-semibold tracking-tight">EkSthlm</span>
@@ -96,10 +96,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
             <Button variant="hero" size="default" asChild>
-              <a
-                href={calendlyUrl}
-                onClick={handleCalendlyClick}
-              >
+              <a href={calendlyUrl} onClick={handleCalendlyClick}>
                 {t.nav.bookCall}
               </a>
             </Button>
