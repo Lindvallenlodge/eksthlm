@@ -71,11 +71,15 @@ export function Header() {
           {/* Right side: Language Switcher + CTA */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
-            <Link to="/#contact">
+            <a
+              href="https://calendly.com/solutions-eksthlm/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="hero" size="default">
                 {t.nav.bookCall}
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile: Language + Menu Toggle */}
@@ -117,11 +121,17 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link to="/#contact" className="mt-2" onClick={() => setMobileMenuOpen(false)}>
+              <a
+                href="https://calendly.com/solutions-eksthlm/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 <Button variant="hero" className="w-full">
                   {t.nav.bookCall}
                 </Button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}
