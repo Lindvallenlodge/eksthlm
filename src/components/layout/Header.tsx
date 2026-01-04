@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -31,13 +31,13 @@ export function Header() {
 
   const calendlyUrl = "https://calendly.com/solutions-eksthlm/30min";
 
-  const openCalendlyPopup = () => {
-    // If the Calendly script isn't loaded yet, fall back to opening a new tab.
+  const handleCalendlyClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    // If the Calendly widget is loaded, open the popup and keep the visitor on the page.
     if (window.Calendly?.initPopupWidget) {
+      e.preventDefault();
       window.Calendly.initPopupWidget({ url: calendlyUrl });
-    } else {
-      window.open(calendlyUrl, "_blank", "noopener,noreferrer");
     }
+    // Otherwise, do NOT preventDefault so the normal link navigation works.
   };
 
   const handleNavClick = (href: string) => {
@@ -91,13 +91,15 @@ export function Header() {
           {/* Right side: Language Switcher + CTA */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
-            <Button
-              variant="hero"
-              size="default"
-              type="button"
-              onClick={openCalendlyPopup}
-            >
-              {t.nav.bookCall}
+            <Button variant="hero" size="default" asChild>
+              <a
+                href={calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleCalendlyClick}
+              >
+                {t.nav.bookCall}
+              </a>
             </Button>
           </div>
 
@@ -140,16 +142,18 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Button
-                variant="hero"
-                className="w-full mt-2"
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openCalendlyPopup();
-                }}
-              >
-                {t.nav.bookCall}
+              <Button variant="hero" className="w-full mt-2" asChild>
+                <a
+                  href={calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    handleCalendlyClick(e);
+                  }}
+                >
+                  {t.nav.bookCall}
+                </a>
               </Button>
             </div>
           </motion.div>
