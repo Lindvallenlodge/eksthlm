@@ -160,10 +160,6 @@ export const translations = {
         "Interior upgrades",
         "Other",
       ],
-      // --- Contact details for display ---
-      // Update displayed email and phone (used in the UI)
-      emailValue: "solutions@eksthlm.com",
-      phoneValue: "+46 76 206 61 28",
     },
     // Portfolio Preview
     portfolioPreview: {
@@ -482,9 +478,6 @@ export const translations = {
         "Interiöruppgraderingar",
         "Övrigt",
       ],
-      // --- Contact details for display ---
-      emailValue: "solutions@eksthlm.com",
-      phoneValue: "+46 76 206 61 28",
     },
     // Portfolio Preview
     portfolioPreview: {
@@ -803,9 +796,6 @@ export const translations = {
         "Mejoras de interiores",
         "Otro",
       ],
-      // --- Contact details for display ---
-      emailValue: "solutions@eksthlm.com",
-      phoneValue: "+46 76 206 61 28",
     },
     // Portfolio Preview
     portfolioPreview: {
@@ -1021,8 +1011,6 @@ export type Translations = {
     phone: string;
     serviceArea: string;
     serviceAreaValue: string;
-    emailValue: string;
-    phoneValue: string;
     form: {
       name: string;
       email: string;

@@ -94,6 +94,12 @@ export function ContactSection() {
                 </div>
               </div>
             </div>
+
+            <div className="flex gap-4 mt-8">
+              <Button variant="hero" size="lg" asChild>
+                <a href="tel:+46762066128">{t.nav.bookCall}</a>
+              </Button>
+            </div>
           </motion.div>
 
           {/* Contact Form */}

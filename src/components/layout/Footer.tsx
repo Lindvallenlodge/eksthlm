@@ -59,8 +59,8 @@ export function Footer() {
             <h4 className="font-semibold mb-4">{t.footer.contact}</h4>
             <ul className="space-y-2 text-background/70">
               <li>
-                <a href="mailto:hello@eksthlm.se" className="hover:text-background transition-colors">
-                  hello@eksthlm.se
+                <a href="mailto:solutions@eksthlm.com" className="hover:text-background transition-colors">
+                  solutions@eksthlm.com
                 </a>
               </li>
               <li>
