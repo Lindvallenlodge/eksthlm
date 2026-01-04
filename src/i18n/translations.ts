@@ -1021,6 +1021,8 @@ export type Translations = {
     phone: string;
     serviceArea: string;
     serviceAreaValue: string;
+    emailValue: string;
+    phoneValue: string;
     form: {
       name: string;
       email: string;
