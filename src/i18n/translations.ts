@@ -133,7 +133,7 @@ export const translations = {
       email: "Email",
       phone: "Phone",
       serviceArea: "Service Area",
-      serviceAreaValue: "Stockholm + surrounding areas",
+      serviceAreaValue: "Stockholm & Beyond",
       form: {
         name: "Name",
         email: "Email",
@@ -160,6 +160,10 @@ export const translations = {
         "Interior upgrades",
         "Other",
       ],
+      // --- Contact details for display ---
+      // Update displayed email and phone (used in the UI)
+      emailValue: "solutions@eksthlm.com",
+      phoneValue: "+46 76 206 61 28",
     },
     // Portfolio Preview
     portfolioPreview: {
@@ -451,7 +455,7 @@ export const translations = {
       email: "E-post",
       phone: "Telefon",
       serviceArea: "Tjänsteområde",
-      serviceAreaValue: "Stockholm + omgivande områden",
+      serviceAreaValue: "Stockholm & Beyond",
       form: {
         name: "Namn",
         email: "E-post",
@@ -478,6 +482,9 @@ export const translations = {
         "Interiöruppgraderingar",
         "Övrigt",
       ],
+      // --- Contact details for display ---
+      emailValue: "solutions@eksthlm.com",
+      phoneValue: "+46 76 206 61 28",
     },
     // Portfolio Preview
     portfolioPreview: {
@@ -769,7 +776,7 @@ export const translations = {
       email: "Correo electrónico",
       phone: "Teléfono",
       serviceArea: "Área de servicio",
-      serviceAreaValue: "Estocolmo + áreas circundantes",
+      serviceAreaValue: "Stockholm & Beyond",
       form: {
         name: "Nombre",
         email: "Correo electrónico",
@@ -796,6 +803,9 @@ export const translations = {
         "Mejoras de interiores",
         "Otro",
       ],
+      // --- Contact details for display ---
+      emailValue: "solutions@eksthlm.com",
+      phoneValue: "+46 76 206 61 28",
     },
     // Portfolio Preview
     portfolioPreview: {
