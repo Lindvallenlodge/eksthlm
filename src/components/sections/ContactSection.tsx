@@ -66,8 +66,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.email}</p>
-                  <a href="mailto:solutions@eksthlm.com" className="font-medium hover:text-primary transition-colors">
-                    solutions@eksthlm.com
+                  <a href="mailto:hello@eksthlm.se" className="font-medium hover:text-primary transition-colors">
+                    hello@eksthlm.se
                   </a>
                 </div>
               </div>
@@ -78,8 +78,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.phone}</p>
-                  <a href="tel:+46762066128" className="font-medium hover:text-primary transition-colors">
-                    +46 76 206 61 28
+                  <a href="tel:+46701234567" className="font-medium hover:text-primary transition-colors">
+                    +46 70 123 45 67
                   </a>
                 </div>
               </div>
