@@ -1,32 +1,145 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EkSthlm | Renovation Project Management Stockholm</title>
-    <meta name="description" content="EkSthlm - Nordic Clarity in Real Estate & Responsible Sourcing. Independent customer representation for renovation projects in Stockholm." />
-    <meta name="author" content="EkSthlm" />
-    <meta name="theme-color" content="#3d5a4c" />
+<file name=Header.tsx path=/src/components/layout>
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../ui/Button";
+import { Phone } from "lucide-react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
-    <meta property="og:title" content="EkSthlm | Renovation Project Management Stockholm" />
-    <meta property="og:description" content="Independent customer representation for renovation projects—tight scope, fair cost, and a result that matches the original vision." />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_SE" />
-    <meta property="og:site_name" content="EkSthlm" />
-    <meta property="og:image" content="https://eksthlm.com/og-image.png" />
-    <meta property="og:url" content="https://eksthlm.com" />
+export function Header() {
+  const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@EkSthllm" />
-    <meta name="twitter:image" content="https://eksthlm.com/og-image.png" />
-    
-    <link rel="canonical" href="https://eksthlm.com" />
-    <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
-  </head>
+  const calendlyUrl = "https://calendly.com/solutions-eksthlm/30min";
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-  </body>
-</html>
+  const handleCalendlyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const calendly = (window as any).Calendly;
+    // If the widget is loaded, open the popup and keep the user on the page.
+    if (calendly && typeof calendly.initPopupWidget === "function") {
+      e.preventDefault();
+      calendly.initPopupWidget({ url: calendlyUrl });
+    }
+    // Otherwise: do NOT preventDefault so the normal link opens.
+  };
+
+  return (
+    <header className="header">
+      {/* Other header content */}
+      <nav className="nav">
+        <LanguageSwitcher />
+        {/* Desktop Book a call CTA */}
+        <Button className="hidden md:flex items-center gap-2" asChild>
+          <a
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleCalendlyClick}
+          >
+            {t.nav.bookCall}
+            <Phone size={16} />
+          </a>
+        </Button>
+      </nav>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="mobile-menu">
+          {/* Other mobile menu items */}
+          <Button
+            variant="outline"
+            className="w-full justify-start gap-2"
+            asChild
+          >
+            <a
+              href={calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                handleCalendlyClick(e);
+                setIsOpen(false);
+              }}
+            >
+              {t.nav.bookCall}
+              <Phone size={16} />
+            </a>
+          </Button>
+        </div>
+      )}
+    </header>
+  );
+}
+</file>
+
+<file name=HeroSection.tsx path=/src/components/sections>
+import React from "react";
+import { Button } from "../ui/Button";
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+export function HeroSection() {
+  const { t } = useTranslation();
+
+  const calendlyUrl = "https://calendly.com/solutions-eksthlm/30min";
+
+  const handleCalendlyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const calendly = (window as any).Calendly;
+    if (calendly && typeof calendly.initPopupWidget === "function") {
+      e.preventDefault();
+      calendly.initPopupWidget({ url: calendlyUrl });
+    }
+  };
+
+  return (
+    <section className="hero-section">
+      {/* Other hero content */}
+      <Button variant="hero" size="lg" className="group" asChild>
+        <a
+          href={calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleCalendlyClick}
+        >
+          {t.hero.ctaPrimary}
+          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </a>
+      </Button>
+    </section>
+  );
+}
+</file>
+
+<file name=ContactSection.tsx path=/src/components/sections>
+import React from "react";
+import { Button } from "../ui/Button";
+import { useTranslation } from "react-i18next";
+
+export function ContactSection() {
+  const { t } = useTranslation();
+
+  const calendlyUrl = "https://calendly.com/solutions-eksthlm/30min";
+
+  const handleCalendlyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const calendly = (window as any).Calendly;
+    if (calendly && typeof calendly.initPopupWidget === "function") {
+      e.preventDefault();
+      calendly.initPopupWidget({ url: calendlyUrl });
+    }
+  };
+
+  return (
+    <section className="contact-section">
+      {/* Other contact content */}
+      <Button variant="hero" size="lg" asChild>
+        <a
+          href={calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleCalendlyClick}
+        >
+          {t.nav.bookCall}
+        </a>
+      </Button>
+    </section>
+  );
+}
+</file>
