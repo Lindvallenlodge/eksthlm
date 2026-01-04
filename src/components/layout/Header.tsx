@@ -7,6 +7,15 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/i18n/LanguageContext";
 import logoImg from "@/assets/logo-eksthlm.png";
 
+// Calendly popup support (requires Calendly widget script on the page)
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (opts: { url: string }) => void;
+    };
+  }
+}
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -19,6 +28,17 @@ export function Header() {
     { label: t.nav.packages, href: "/#packages" },
     { label: t.nav.contact, href: "/#contact" },
   ];
+
+  const calendlyUrl = "https://calendly.com/solutions-eksthlm/30min";
+
+  const openCalendlyPopup = () => {
+    // If the Calendly script isn't loaded yet, fall back to opening a new tab.
+    if (window.Calendly?.initPopupWidget) {
+      window.Calendly.initPopupWidget({ url: calendlyUrl });
+    } else {
+      window.open(calendlyUrl, "_blank", "noopener,noreferrer");
+    }
+  };
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
@@ -71,15 +91,14 @@ export function Header() {
           {/* Right side: Language Switcher + CTA */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
-            <a
-              href="https://calendly.com/solutions-eksthlm/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Button
+              variant="hero"
+              size="default"
+              type="button"
+              onClick={openCalendlyPopup}
             >
-              <Button variant="hero" size="default">
-                {t.nav.bookCall}
-              </Button>
-            </a>
+              {t.nav.bookCall}
+            </Button>
           </div>
 
           {/* Mobile: Language + Menu Toggle */}
@@ -121,17 +140,17 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <a
-                href="https://calendly.com/solutions-eksthlm/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2"
-                onClick={() => setMobileMenuOpen(false)}
+              <Button
+                variant="hero"
+                className="w-full mt-2"
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openCalendlyPopup();
+                }}
               >
-                <Button variant="hero" className="w-full">
-                  {t.nav.bookCall}
-                </Button>
-              </a>
+                {t.nav.bookCall}
+              </Button>
             </div>
           </motion.div>
         )}
