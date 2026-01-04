@@ -32,12 +32,16 @@ export function Header() {
   const calendlyUrl = "https://calendly.com/solutions-eksthlm/30min";
 
   const handleCalendlyClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    // If the Calendly widget is loaded, open the popup and keep the visitor on the page.
+    // Prefer Calendly popup (keeps visitor on-page). If widget isn't loaded, fall back to a normal new tab.
     if (window.Calendly?.initPopupWidget) {
       e.preventDefault();
       window.Calendly.initPopupWidget({ url: calendlyUrl });
+      return;
     }
-    // Otherwise, do NOT preventDefault so the normal link navigation works.
+
+    // Widget not available (e.g., script not loaded yet) -> open in new tab.
+    e.preventDefault();
+    window.open(calendlyUrl, "_blank", "noopener,noreferrer");
   };
 
   const handleNavClick = (href: string) => {
@@ -94,8 +98,6 @@ export function Header() {
             <Button variant="hero" size="default" asChild>
               <a
                 href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={handleCalendlyClick}
               >
                 {t.nav.bookCall}
@@ -145,8 +147,6 @@ export function Header() {
               <Button variant="hero" className="w-full mt-2" asChild>
                 <a
                   href={calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   onClick={(e) => {
                     setMobileMenuOpen(false);
                     handleCalendlyClick(e);
