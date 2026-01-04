@@ -19,6 +19,12 @@ import { useLanguage } from "@/i18n/LanguageContext";
 export function ContactSection() {
   const { toast } = useToast();
   const { t } = useLanguage();
+  // Contact values (prefer translations when available, fallback to defaults)
+  const emailValue = (t.contact as any).emailValue || "solutions@eksthlm.com";
+  const emailHref = `mailto:${emailValue}`;
+
+  const phoneValue = (t.contact as any).phoneValue || "+46 76 206 61 28";
+  const phoneHref = (t.contact as any).phoneHref || "tel:+46762066128";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [services, setServices] = useState({
     quoteReview: false,
@@ -66,8 +72,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.email}</p>
-                  <a href="mailto:hello@eksthlm.se" className="font-medium hover:text-primary transition-colors">
-                    hello@eksthlm.se
+                  <a href={emailHref} className="font-medium hover:text-primary transition-colors">
+                    {emailValue}
                   </a>
                 </div>
               </div>
@@ -78,8 +84,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.phone}</p>
-                  <a href="tel:+46701234567" className="font-medium hover:text-primary transition-colors">
-                    +46 70 123 45 67
+                  <a href={phoneHref} className="font-medium hover:text-primary transition-colors">
+                    {phoneValue}
                   </a>
                 </div>
               </div>
